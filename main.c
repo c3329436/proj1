@@ -1,4 +1,21 @@
+/*
+This program can:
+- encrypt and decrypt a rotation cipher with a known numerical key. 
+- encrypt and decrypt a substitution cipher with a known alphabetical key.
+User interface notes:
+- The program requires the user to enter the text to be encrypted or decrypted.
+- The program then offers the user a menu, a number between 1 and 4 is entered matching the operation to be executed.
+- The user is then prompted for a key.  
+- Program does not read files, scanf() statements can be controlled in Eclipse Che by entering ./a.out into the terminal.
+Flow control: 
+- Program is controlled via main(). User is prompted to enter a number between 1 and 5 which executes a switch case statement. 
+- The switch case statement directs the program to the relevant function. 
+- The result of the operations within the function is printed to the terminal via a printf() statement.
+- After execution a break statement in the switch case operation ends the program. 
+*/
+
 #include <stdio.h>
+#include <string.h> // This additional header allows access to string.h library and associated functions.
 
 void CaesarEncrypt(char *message, int key);          // Function prototype for operation 1. This must be declared before main to then be used in the main code.
 void CaesarDecrypt(char *message, int key);          // Function prototype for operation 2.
@@ -8,11 +25,10 @@ void SubDecrypt(char *message, char *encryptionKey); // Function prototype for o
 
 int main()
 {
-    char message[100];       // Array of type char to store ciphertext/plaintext message. 
-    int key=0;               // Declare a variable of type int to store key rotation number for operation 1 and operation 2.
-    int operation;           // Declare a variable of type int to allow user to choose what operation to complete. 
+    char message[100];       // Array of type char stores characters eg. ABC. Variable declared to store ciphertext/plaintext message. 
+    int key=0, operation;    // Declare a variable of type int to store key rotation number for operations 1 and 2; and to choose what operation to complete.
     char encryptionKey[27];  // Array of type char to store encryption key for operation 3 and operation 4. 
-    printf("Enter text to be encrypted or decrypted: \n"); 
+    printf("Please enter text: \n"); 
     scanf("%[^\n]", message);// Scans input plaintext or ciphertext. Ignores spaces and will read all text until end of line.
 
     printf("Select operation: \n"); // Allows user to select which operation to execute. 
@@ -44,5 +60,4 @@ int main()
     default: // This option is only present if user selects a number outside the range of 1-5. If this occurs, default (operation) is executed. 
         printf("An error has occurred. Please check you have entered an integer between 1 and 4"); // Statement prompting user to enter a valid option. 
     break;   // Once function has been executed, break will exit the switch statement
-return 0;
-    } 
+}
